@@ -1,20 +1,24 @@
-# backend/Dockerfile
-FROM node:20-alpine AS backend
+FROM node:20-bullseye-slim AS backend
 
 WORKDIR /app
-COPY . .
 
-
-
+# Install pnpm
 RUN npm install -g pnpm
-# 安装依赖
-RUN pnpm install
 
-RUN pnpm install livekit/rtc-node-linux-x64-musl
+# Copy package.json and pnpm-lock.yaml first
+COPY package.json pnpm-lock.yaml ./
+
+# Install dependencies
+RUN pnpm install
 
 RUN npm install -g tsx
 
-# 暴露后端端口（假设是 4000）
+
+# Copy the rest of the application code
+COPY . .
+
+# Expose the backend port (assuming it's 4000)
 EXPOSE 4000
 
+# Start the application
 CMD ["pnpm", "run", "dev"]
