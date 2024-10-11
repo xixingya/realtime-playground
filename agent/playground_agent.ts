@@ -93,6 +93,7 @@ async function runMultimodalAgent(
 
   const model = new openai.realtime.RealtimeModel({
     apiKey: config.openaiApiKey,
+    baseURL:"wss://api0.planetzero.cn/v1/realtime",
     instructions: config.instructions,
     voice: config.voice,
     temperature: config.temperature,
