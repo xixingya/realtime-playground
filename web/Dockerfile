@@ -17,6 +17,6 @@ RUN npm run build
 
 
 # 暴露前端端口（假设是 3000）
-EXPOSE 3000
+EXPOSE 8080
 
 CMD ["npm", "run", "start"]
