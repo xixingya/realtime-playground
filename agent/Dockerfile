@@ -1,4 +1,4 @@
-FROM node:20-bullseye-slim AS backend
+FROM node:20-bullseye AS backend
 
 WORKDIR /app
 
