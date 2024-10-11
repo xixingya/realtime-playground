@@ -18,7 +18,7 @@ RUN npm install -g tsx
 COPY . .
 
 # Expose the backend port (assuming it's 4000)
-EXPOSE 4000
+EXPOSE 8080
 
 # Start the application
 CMD ["pnpm", "run", "dev"]
