@@ -224,4 +224,4 @@ async function runMultimodalAgent(
   });
 }
 
-cli.runApp(new WorkerOptions({ agent: fileURLToPath(import.meta.url) }));
+cli.runApp(new WorkerOptions({ agent: fileURLToPath(import.meta.url), port:8080 }));
