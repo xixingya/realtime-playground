@@ -194,7 +194,7 @@ export function AuthDialog({
 
                                         <div className="flex items-center flex-1 justify-end">
                                             <a
-                                                href="https://github.com/xixingya/realtime-api-playground"
+                                                href="https://github.com/xixingya/realtime-playground"
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="underline flex items-center gap-1"
