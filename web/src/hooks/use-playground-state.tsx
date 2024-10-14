@@ -19,6 +19,7 @@ import { playgroundStateHelpers } from "@/lib/playground-state-helpers";
 import { Preset, defaultPresets } from "@/data/presets";
 
 const LS_OPENAI_API_KEY_NAME = "OPENAI_API_KEY";
+const LS_OPENAI_BASE_URL_NAME = "OPENAI_BASE_URL";
 const LS_USER_PRESETS_KEY = "PG_USER_PRESETS";
 const LS_SELECTED_PRESET_ID_KEY = "PG_SELECTED_PRESET_ID";
 
@@ -51,6 +52,7 @@ type Action =
       payload: Partial<PlaygroundState["sessionConfig"]>;
     }
   | { type: "SET_API_KEY"; payload: string | null }
+  | { type: "SET_BASE_URL"; payload: string| null }
   | { type: "SET_INSTRUCTIONS"; payload: string }
   | { type: "SET_USER_PRESETS"; payload: Preset[] }
   | { type: "SET_SELECTED_PRESET_ID"; payload: string | null }
@@ -80,6 +82,16 @@ function playgroundStateReducer(
       return {
         ...state,
         openaiAPIKey: action.payload,
+      };
+    case "SET_BASE_URL":
+      if (action.payload) {
+        localStorage.setItem(LS_OPENAI_BASE_URL_NAME, action.payload);
+      } else {
+        localStorage.removeItem(LS_OPENAI_BASE_URL_NAME);
+      }
+      return {
+        ...state,
+        openaiBaseUrl: action.payload,
       };
     case "SET_INSTRUCTIONS":
       return {
@@ -174,10 +186,13 @@ export const PlaygroundStateProvider = ({
 
   useEffect(() => {
     const storedKey = localStorage.getItem(LS_OPENAI_API_KEY_NAME);
+    const baseUrl = localStorage.getItem(LS_OPENAI_BASE_URL_NAME);
     if (storedKey && storedKey.length >= 1) {
       dispatch({ type: "SET_API_KEY", payload: storedKey });
+      dispatch({ type: "SET_BASE_URL", payload: baseUrl });
     } else {
       dispatch({ type: "SET_API_KEY", payload: null });
+      dispatch({ type: "SET_BASE_URL", payload: null });
       setShowAuthDialog(true);
     }
 

@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  realtime_front:
+    image: xixingya/realtime_front:latest
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    environment:
+      FRONT_SPECIFIC_VAR: front_value
+
+  realtime_agent:
+    image: xixingya/realtime_agent:latest
+    env_file:
+      - .env
+    environment:
+      AGENT_SPECIFIC_VAR: agent_value

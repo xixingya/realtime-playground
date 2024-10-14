@@ -5,6 +5,7 @@ export async function POST(request: Request) {
   const {
     instructions,
     openaiAPIKey,
+    openaiBaseUrl,
     sessionConfig: {
       turnDetection,
       modalities,
@@ -33,6 +34,7 @@ export async function POST(request: Request) {
       temperature: temperature,
       max_output_tokens: maxOutputTokens,
       openai_api_key: openaiAPIKey,
+      openai_base_url: openaiBaseUrl,
       turn_detection: JSON.stringify({
         type: turnDetection,
         threshold: vadThreshold,

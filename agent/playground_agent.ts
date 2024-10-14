@@ -42,6 +42,7 @@ type TurnDetectionType = {
 
 interface SessionConfig {
   openaiApiKey: string;
+  openaiBaseUrl: string,
   instructions: string;
   voice: string;
   temperature: number;
@@ -53,6 +54,7 @@ interface SessionConfig {
 function parseSessionConfig(data: any): SessionConfig {
   return {
     openaiApiKey: data.openai_api_key || "",
+    openaiBaseUrl: data.openai_base_url || "wss://api.openai.com/v1/realtime",
     instructions: data.instructions || "",
     voice: data.voice || "",
     temperature: parseFloat(data.temperature || "0.8"),
@@ -93,7 +95,7 @@ async function runMultimodalAgent(
 
   const model = new openai.realtime.RealtimeModel({
     apiKey: config.openaiApiKey,
-    baseURL:"wss://api0.planetzero.cn/v1/realtime",
+    baseURL: config.openaiBaseUrl,
     instructions: config.instructions,
     voice: config.voice,
     temperature: config.temperature,

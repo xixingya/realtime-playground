@@ -1,3 +1,16 @@
+基于项目：https://github.com/livekit-examples/realtime-playground
+
+填入你的baseurl和填入openai-key，即可开启你的实时语音对话旅程。
+
+如何使用：
+1. 注册并创建一个app --> https://cloud.livekit.io
+2. 创建.env文件，并把环境变量填上，具体环境变量参考下方
+3. docker compose up -d
+
+LIVEKIT_URL=wss://xxx.livekit.cloud
+LIVEKIT_API_KEY=xxx
+LIVEKIT_API_SECRET=xxx
+
 # LiveKit + OpenAI Realtime Playground
 
 This project is an interactive playground that demonstrates the capabilities of OpenAI's Realtime API, allowing users to experiment with the API directly in their browser. It's built on top of LiveKit Agents.
